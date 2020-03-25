@@ -1,15 +1,15 @@
-const connection = require('../database/connection')
+const database = require('../database/connection')
 
 module.exports = {
   async index(request, response) {
     const { page = 1 } = request.query
 
-    const [count] = await connection('incidents')
+    const [count] = await database('incidents')
       .count()
 
     response.header('X-Total-Count', count['count(*)'])
 
-    const incidents = await connection('incidents')
+    const incidents = await database('incidents')
       .join('ngos', 'ngos.id', '=', 'incidents.ngo_id')
       .limit(5)
       .offset((page - 1) * 5)
@@ -30,7 +30,7 @@ module.exports = {
     // As informações do usuário logado vêm no "header" da requisição
     const ngoId = request.headers.authorization
 
-    const [incidentId] = await connection('incidents').insert({
+    const [incidentId] = await database('incidents').insert({
       title,
       description,
       value,
@@ -44,7 +44,7 @@ module.exports = {
     const { id } = request.params
     const ngoId = request.headers.authorization
     
-    const incident = await connection('incidents')
+    const incident = await database('incidents')
       .where('id', id)
       .select('ngo_id')
       .first()
@@ -55,7 +55,7 @@ module.exports = {
       })
     }
 
-    await connection('incidents')
+    await database('incidents')
       .where('id', id)
       .delete()
 

@@ -1,10 +1,10 @@
-const connection = require('../database/connection')
+const database = require('../database/connection')
 
 module.exports = {
   async index(request, response) {
     const ngoId = request.headers.authorization
 
-    const incidents = await connection('incidents')
+    const incidents = await database('incidents')
       .where('ngo_id', ngoId)
       .select('*')
 

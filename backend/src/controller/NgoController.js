@@ -1,9 +1,9 @@
 const crypto = require('crypto')
-const connection = require('../database/connection')
+const database = require('../database/connection')
 
 module.exports = {
   async index(request, response) {
-    const ongs = await connection('ngos').select('*')
+    const ongs = await database('ngos').select('*')
     return response.json(ongs)
   },
 
@@ -11,7 +11,7 @@ module.exports = {
     const { name, email, whatsapp, city, uf } = request.body
     const id = crypto.randomBytes(4).toString('HEX')
   
-    await connection('ngos').insert({
+    await database('ngos').insert({
       id,
       name,
       email,

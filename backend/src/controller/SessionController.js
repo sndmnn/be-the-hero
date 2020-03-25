@@ -1,10 +1,10 @@
-const connection = require('../database/connection')
+const database = require('../database/connection')
 
 module.exports = {
   async create(request, response) {
     const { ngoId } = request.body
   
-    const ngo = await connection('ngos')
+    const ngo = await database('ngos')
       .where('id', ngoId)
       .select('name')
       .first()
