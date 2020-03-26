@@ -15,7 +15,7 @@ npm install nodemon -D
 npm install express knex sqlite3 cors axios react-icons react-router-dom
 ```
 
-## Building Process
+## Running the project
 
 In both *backend* and *frontend* folders run:
 
