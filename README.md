@@ -3,17 +3,11 @@ A simple application to connect NGOs needing funding for a cause with people tha
 
 ## Installation
 
-1. Install dev dependencies
-
+1. Run
 ```
-npm install nodemon -D
+npm
 ```
-
-2. Install dependencies
-
-```
-npm install express knex sqlite3 cors axios react-icons react-router-dom
-```
+on the project folder to install all dependencies and you're ready to go
 
 ## Running the project
 
